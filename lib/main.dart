@@ -85,7 +85,11 @@ class _HomePageState extends State<HomePage> {
                   subtitle: Text('Dados da sua conta'),
                   trailing: Icon(Icons.money),
                   leading: Icon(Icons.money_off),
-                  onTap: (){},
+                  onTap: (){
+                      pageController.jumpToPage(2);
+                      Navigator.pop(context); //sempre fecha a ultima pagina aberta
+
+                  },
                 )
             ],
           ),
@@ -99,7 +103,20 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             Container(
-              color: Colors.blue,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton(
+                  onLongPress: (){
+                    print('Remover');
+                  },
+                  onPressed: (){
+                    print('Adicionar');
+                  }, 
+                  
+                  child: Text('Baixar PDF')),
+                  Image(image: AssetImage('assets/nu-iicon.png') )
+              ]),
             ),
             Container(
               color: Colors.redAccent,
