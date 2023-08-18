@@ -115,7 +115,8 @@ class _HomePageState extends State<HomePage> {
                   }, 
                   
                   child: Text('Baixar PDF')),
-                  Image(image: AssetImage('assets/nu-iicon.png') )
+                  Image(image: AssetImage('assets/nu-iicon.png')),
+                  IconButton(onPressed: (){}, icon: Icon(Icons.home))
               ]),
             ),
             Container(
