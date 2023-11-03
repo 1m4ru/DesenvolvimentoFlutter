@@ -18,10 +18,12 @@ class _ProductsPageState extends State<ProductsPage> {
           price: 2000.00,
           image: 'assets/cadeira-gamer.jpeg'),
       Product(name: 'Ipad', price: 900.0, image: 'assets/ipade.jpeg'),
+          Product(name: 'Monitor', price: 1200.0, image: 'assets/monitor.jpeg'),
+      Product(name: 'Smartphone', price: 795.0, image: 'assets/motorola.jpeg'),
     ],
     [
-      Product(name: 'Monitor', price: 1200.0, image: 'assets/monitor.jpeg'),
-      Product(name: 'Smartphone', price: 795.0, image: 'assets/motorola.jpeg'),
+      Product(name: 'Geladeira', price: 1200.0, image: 'assets/monitor.jpeg'),
+      Product(name: '', price: 795.0, image: 'assets/motorola.jpeg'),
     ],
   ];
 
@@ -61,11 +63,11 @@ class _ProductsPageState extends State<ProductsPage> {
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            label: 'Grid 1',
+            label: 'Eletronicos',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.business),
-            label: 'Grid 2',
+            label: 'Eletrodomesticos',
           ),
         ],
       ),
@@ -98,7 +100,7 @@ class ProductCard extends StatelessWidget {
         children: [
           Image.asset(
             product.image,
-            width: 100,
+            width: 250,
             height: 100,
           ),
           Text(product.name),
