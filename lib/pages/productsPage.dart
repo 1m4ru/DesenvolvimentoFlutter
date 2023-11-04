@@ -63,7 +63,7 @@ class _ProductsPageState extends State<ProductsPage> {
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            label: 'Eletronicos',
+            label: 'Home',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.business),

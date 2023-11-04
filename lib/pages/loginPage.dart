@@ -1,9 +1,24 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:trade_hub/pages/productsPage.dart';
 
-TextEditingController input = TextEditingController();
-TextEditingController input2 = TextEditingController();
+
 PageController pageController = PageController(initialPage: 0);
+TextEditingController emailController = TextEditingController();
+TextEditingController passwordController = TextEditingController();
+
+Future<User?> signInWithEmailAndPassword(String email, String password) async {
+  try {
+    FirebaseAuth auth = await FirebaseAuth.instance;
+    auth.signInWithEmailAndPassword(email: email, password: password);
+    return auth.currentUser;
+   
+  } catch (error) {
+      print('Não foi possivel logar pelos seguintes erros: $error');
+      
+  }
+}
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -31,18 +46,19 @@ class _LoginPageState extends State<LoginPage> {
             child: Column(
               children: [
                 TextField(
+                  controller: emailController,
                   decoration: InputDecoration(
-                    labelText: 'Login',
+                    labelText: 'Email',
                     hintText: 'Digite seu login',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10.0),
                     ),
                     contentPadding: EdgeInsets.all(15.0),
                   ),
-                  controller: input,
                 ),
                 SizedBox(height: 10),
                 TextField(
+                  controller: passwordController,
                   decoration: InputDecoration(
                     labelText: 'Senha',
                     hintText: 'Digite sua senha',
@@ -51,7 +67,6 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     contentPadding: EdgeInsets.all(15.0),
                   ),
-                  controller: input2,
                 ),
                 Container(
                   margin: EdgeInsets.only(top: 10, left: 25, right: 25),
@@ -68,17 +83,33 @@ class _LoginPageState extends State<LoginPage> {
                         style: TextStyle(color: Colors.white),
                       ),
                     ),
-                    onPressed: () {
+                    onPressed: () async{
+                      String email = emailController.text;
+                      String password = passwordController.text;
                       pageController.animateToPage(1,
                           duration: Duration(milliseconds: 200),
                           curve: Curves.ease);
+                      
+
+                      User ? user = await signInWithEmailAndPassword(email, password);
+
+                      if(user != null) {
+                        Navigator.pushReplacement(
+                          context, 
+                           MaterialPageRoute(
+                    builder: (BuildContext context) => Product(),
+                  ),
+                          
+                          );
+                      }
+                           
                     },
                   ),
                 ),
               ],
             ),
           ),
-          ProductsPage(),
+         
         ],
       ),
     );
